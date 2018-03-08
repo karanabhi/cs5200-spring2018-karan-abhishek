@@ -7,6 +7,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 import edu.northeastern.cs5200.model.DeveloperDao;
 import edu.northeastern.cs5200.model.PageDao;
+import edu.northeastern.cs5200.model.PriviledgeDao;
 import edu.northeastern.cs5200.model.RoleDao;
 import edu.northeastern.cs5200.model.WebsiteDao;
 import edu.northeastern.cs5200.model.WidgetDao;
@@ -82,12 +83,22 @@ public class Cs5200Spring2018KaranAbhishekJdbcApplication extends SpringBootServ
 		 * Role Id: 4 is Editor
 		 * Role Id: 5 is Reviewer
 		 */
-		RoleDao roleDao=RoleDao.getInstance();
+		//RoleDao roleDao=RoleDao.getInstance();
 		//System.out.println(roleDao.assignWebsiteRole(3, 3, 5));
 		//System.out.println(roleDao.assignPageRole(3, 2, 4));
-		System.out.println(roleDao.deleteWebsiteRole(3, 3, 1));
-		System.out.println(roleDao.deletePageRole(3, 2, 2));
-		
+		//System.out.println(roleDao.deleteWebsiteRole(3, 3, 1));
+		//System.out.println(roleDao.deletePageRole(3, 2, 2));
+		/***************************************************************************************/
+		/* Priviledge Id: 1 is Create
+		 * Priviledge Id: 2 is Update
+		 * Priviledge Id: 3 is Read
+		 * Priviledge Id: 4 is Delete
+		 */
+		//PriviledgeDao priviledgeDao=PriviledgeDao.getInstance();
+		//System.out.println(priviledgeDao.assignWebsitePriviledge(3, 3, 4));
+		//System.out.println(priviledgeDao.assignPagePriviledge(3, 2, 2));
+		//System.out.println(priviledgeDao.deleteWebsitePriviledge(3, 3, 4));
+		//System.out.println(priviledgeDao.deletePagePriviledge(3, 2, 2));
 		
 	}
 }
