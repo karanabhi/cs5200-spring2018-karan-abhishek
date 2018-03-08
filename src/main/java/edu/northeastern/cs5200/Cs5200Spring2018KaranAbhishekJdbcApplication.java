@@ -7,6 +7,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 import edu.northeastern.cs5200.model.DeveloperDao;
 import edu.northeastern.cs5200.model.PageDao;
+import edu.northeastern.cs5200.model.RoleDao;
 import edu.northeastern.cs5200.model.WebsiteDao;
 import edu.northeastern.cs5200.model.WidgetDao;
 import edu.northeastern.cs5200.objects.Developer;
@@ -74,6 +75,18 @@ public class Cs5200Spring2018KaranAbhishekJdbcApplication extends SpringBootServ
 		//Widget widget=new Widget(1, page, "Table", 100, 200, "font-color", "border", "Table Caption", 5);
 		//System.out.println(widgetDao.updateWidget(1,widget));
 		//System.out.println(widgetDao.deleteWidget(2));
+		/***************************************************************************************/
+		 /*Role Id: 1 is Owner
+		 * Role Id: 2 is Admin
+		 * Role Id: 3 is Writer
+		 * Role Id: 4 is Editor
+		 * Role Id: 5 is Reviewer
+		 */
+		RoleDao roleDao=RoleDao.getInstance();
+		//System.out.println(roleDao.assignWebsiteRole(3, 3, 5));
+		//System.out.println(roleDao.assignPageRole(3, 2, 4));
+		System.out.println(roleDao.deleteWebsiteRole(3, 3, 1));
+		System.out.println(roleDao.deletePageRole(3, 2, 2));
 		
 		
 	}
