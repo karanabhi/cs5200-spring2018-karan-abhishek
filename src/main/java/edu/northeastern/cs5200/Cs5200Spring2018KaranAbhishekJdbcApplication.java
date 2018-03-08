@@ -8,10 +8,12 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import edu.northeastern.cs5200.model.DeveloperDao;
 import edu.northeastern.cs5200.model.PageDao;
 import edu.northeastern.cs5200.model.WebsiteDao;
+import edu.northeastern.cs5200.model.WidgetDao;
 import edu.northeastern.cs5200.objects.Developer;
 import edu.northeastern.cs5200.objects.Page;
 import edu.northeastern.cs5200.objects.Person;
 import edu.northeastern.cs5200.objects.Website;
+import edu.northeastern.cs5200.objects.Widget;
 
 @SpringBootApplication
 public class Cs5200Spring2018KaranAbhishekJdbcApplication extends SpringBootServletInitializer	{
@@ -62,9 +64,16 @@ public class Cs5200Spring2018KaranAbhishekJdbcApplication extends SpringBootServ
 		//System.out.println(pageDao.updatePage(1,page));
 		//System.out.println(pageDao.deletePage(1));
 		/***************************************************************************************/
-		
-		
-		
+		//WidgetDao widgetDao=WidgetDao.getInstance();
+		//Page page=new Page(2, null, "Home", "Home Page", null, "2006-8-3", 78946500, "Home Page New");
+		//Widget widget=new Widget(0, page, "Image", 500, 300, "font-color", "color", "Image Caption", 3);	
+		//System.out.println("Create Widget"+widgetDao.createWidgetForPage(2, widget));
+		//System.out.println(widgetDao.findAllWidgets());
+		//System.out.println(widgetDao.findWidgetById(1));
+		//System.out.println(widgetDao.findWidgetsForPage(2));
+		//Widget widget=new Widget(1, page, "Table", 100, 200, "font-color", "border", "Table Caption", 5);
+		//System.out.println(widgetDao.updateWidget(1,widget));
+		//System.out.println(widgetDao.deleteWidget(2));
 		
 		
 	}

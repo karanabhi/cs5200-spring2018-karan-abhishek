@@ -13,6 +13,26 @@ public class Widget {
 	private Page page;
 	private String name,cssClass,cssStyle,text;	
 	
+	@Override
+	public String toString() {
+		return "ID:"+id+"\tWidth:"+width+"\tName:"+name
+				+"\tHeight:"+height+"\tOrder:"+order
+				+"\tcssClass:"+cssClass+"\tcssStyle:"+cssStyle+"\tText:"+text+"Page Id:"+page.getId()+"\n";	
+	}
+
+	public Widget(int id,Page page,String name, int width, int height,String cssClass, String cssStyle, String text, int order) {
+		this.id=id;
+		this.page=page;
+		this.name=name;
+		this.height=height;
+		this.width=width;
+		this.order=order;
+		this.cssClass=cssClass;
+		this.cssStyle=cssStyle;
+		this.text=text;
+	}
+				
+	
 	/**
 	 * @return the id
 	 */
@@ -154,11 +174,5 @@ public class Widget {
 	 */
 	public void setText(String text) {
 		this.text = text;
-	}
-
-
-	public Widget() {
-		// TODO Auto-generated constructor stub
-	}
-
+	}	
 }
