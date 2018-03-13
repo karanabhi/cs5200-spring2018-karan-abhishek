@@ -13,6 +13,22 @@ public class YouTubeWidget {
 	private Widget widget;
 	private String url;	
 	
+	@Override
+	public String toString() {
+		return "ID:"+id+"\tURL:"+url+"\tWidgetID:"+widget.getId()+"\tWxpandable"+expandable+"\tSharable"+sharable+"\n";	
+	}
+
+	public YouTubeWidget(int id,String url,Widget widget,int expandable,int sharable) {
+		this.id=id;
+		this.expandable=expandable;
+		this.sharable=sharable;
+		this.widget=widget;
+		this.url=url;
+	}
+
+	
+	
+	
 	/**
 	 * @return the id
 	 */
@@ -100,11 +116,4 @@ public class YouTubeWidget {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-
-
-	public YouTubeWidget() {
-		// TODO Auto-generated constructor stub
-	}
-
 }

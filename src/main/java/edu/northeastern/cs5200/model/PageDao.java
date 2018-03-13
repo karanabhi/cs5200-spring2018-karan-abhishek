@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class PageDao {
 	private String connString="jdbc:mysql://cs5200-spring2018-karan.caa00vj8vym7.us-east-1.rds.amazonaws.com/cs5200_spring2018_karan";
 	private String uName="karan";
 	private String pass="yourPa$$word123";
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public static PageDao getInstance() {
 		if(instance==null) {
@@ -46,14 +48,15 @@ public class PageDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn=DriverManager.getConnection(connString,uName,pass);
-			String str="INSERT INTO page (website_id,name,description,updated,views,title) values(?,?,?,?,?,?) ";
+			String str="INSERT INTO page (website_id,name,description,created,updated,views,title) values(?,?,?,?,?,?,?) ";
 			pstmt=conn.prepareStatement(str,pstmt.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, websiteId);
 			pstmt.setString(2, page.getName());	
 			pstmt.setString(3, page.getDescription());		
-			pstmt.setString(4, page.getUpdated());
-			pstmt.setInt(5, page.getViews());
-			pstmt.setString(6, page.getTitle());
+			pstmt.setString(4, "2018-07-03");
+			pstmt.setString(5, "2018-07-03");
+			pstmt.setInt(6, page.getViews());
+			pstmt.setString(7, page.getTitle());
 			
 			result=pstmt.executeUpdate();
 			results = pstmt.getGeneratedKeys();
@@ -207,7 +210,7 @@ public class PageDao {
 			pstmt.setInt(6, page.getWebsite().getId());
 			pstmt.setInt(7, pageId);
 			result=pstmt.executeUpdate();
-			//System.out.println("updateWebsite() Website Status:"+result);
+			System.out.println("updateWebsite() Website Status:"+result);
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -257,5 +260,67 @@ public class PageDao {
 		return result;
 	}
 
+	public int updatePageByTitle(int websiteId, String title)
+	{
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn=DriverManager.getConnection(connString,uName,pass);
+			
+			String str="UPDATE page SET title=concat(?,title) WHERE website_id=?";
+			pstmt=conn.prepareStatement(str);	
+			pstmt.setString(1, title);
+			pstmt.setInt(2, websiteId);
+			result=pstmt.executeUpdate();
+			System.out.println("updatePageByTitle() Page Status:"+result);
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+			} catch(SQLException e){
+				e.printStackTrace();	
+			}
+		}
+		
+		return result;
+	}
+
+	public int deleteLastUpdatedPage(int websiteId)
+	{
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn=DriverManager.getConnection(connString,uName,pass);
+			
+			String str="DELETE FROM page WHERE website_id=? AND updated=(SELECT x.maxUpdated FROM (SELECT MAX(updated) as maxUpdated from page where website_id=?) x)";
+			pstmt=conn.prepareStatement(str);
+			pstmt.setInt(1, websiteId);
+			pstmt.setInt(2, websiteId);
+			
+			result= pstmt.executeUpdate();
+			System.out.println("deleteLastUpdatedPage() Page Status:"+result);
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+			} catch(SQLException e){
+				e.printStackTrace();	
+			}
+		}
+		
+		return result;
+	}
 
 }

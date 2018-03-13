@@ -12,6 +12,17 @@ public class HeadingWidget {
 	private int id,size;
 	private Widget widget;
 		
+	@Override
+	public String toString() {
+		return "ID:"+id+"\tSize:"+size+"\tWidgetID:"+widget.getId()+"\n";	
+	}
+
+	public HeadingWidget(int id,int size,Widget widget) {
+		this.id=id;
+		this.size=size;
+		this.widget=widget;
+	}
+	
 	/**
 	 * @return the id
 	 */
@@ -52,10 +63,6 @@ public class HeadingWidget {
 	 */
 	public void setWidget(Widget widget) {
 		this.widget = widget;
-	}
-	
-	public HeadingWidget() {
-		// TODO Auto-generated constructor stub
 	}
 
 }

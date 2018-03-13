@@ -13,6 +13,18 @@ public class ImageWidget {
 	private Widget widget;
 	private String src;	
 	
+	
+	@Override
+	public String toString() {
+		return "ID:"+id+"\tSrc:"+src+"\tWidgetID:"+widget.getId()+"\n";	
+	}
+
+	public ImageWidget(int id,String src,Widget widget) {
+		this.id=id;
+		this.src=src;
+		this.widget=widget;
+	}
+	
 	/**
 	 * @return the id
 	 */
@@ -64,11 +76,4 @@ public class ImageWidget {
 	public void setSrc(String src) {
 		this.src = src;
 	}
-
-
-
-	public ImageWidget() {
-		// TODO Auto-generated constructor stub
-	}
-
 }

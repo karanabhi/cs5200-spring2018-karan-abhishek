@@ -13,6 +13,16 @@ public class HtmlWidget {
 	private Widget widget;
 	private String html;	
 	
+	@Override
+	public String toString() {
+		return "ID:"+id+"\tHTML:"+html+"\tWidgetID:"+widget.getId()+"\n";	
+	}
+
+	public HtmlWidget(int id,String html,Widget widget) {
+		this.id=id;
+		this.html=html;
+		this.widget=widget;
+	}
 	/**
 	 * @return the id
 	 */
@@ -59,10 +69,4 @@ public class HtmlWidget {
 	public void setHtml(String html) {
 		this.html = html;
 	}
-
-
-	public HtmlWidget() {
-		// TODO Auto-generated constructor stub
-	}
-
 }

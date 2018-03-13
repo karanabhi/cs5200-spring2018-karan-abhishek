@@ -13,7 +13,19 @@ public class User {
 	private Person person;
 	private String userKey;
 	
-	
+	@Override
+	public String toString() {
+		return "ID:"+id+"\tUser Agreement:"+userAgreement+"\tPersonId:"+person.getId()
+				+"\tUser Key:"+userKey +"\n";
+				
+	}	
+
+	public User(int id,Person person,int userAgreement, String userKey) {	
+		this.id=id;
+		this.person=person;
+		this.userKey=userKey;
+		this.userAgreement=userAgreement;
+	}
 	
 	/**
 	 * @return the id
@@ -83,12 +95,6 @@ public class User {
 	 */
 	public void setUserKey(String userKey) {
 		this.userKey = userKey;
-	}
-
-
-
-	public User() {
-		// TODO Auto-generated constructor stub
 	}
 
 }

@@ -8,7 +8,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import edu.northeastern.cs5200.objects.Developer;
@@ -28,6 +31,7 @@ public class WebsiteDao {
 	private String connString="jdbc:mysql://cs5200-spring2018-karan.caa00vj8vym7.us-east-1.rds.amazonaws.com/cs5200_spring2018_karan";
 	private String uName="karan";
 	private String pass="yourPa$$word123";
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public static WebsiteDao getInstance() {
 		if(instance==null) {
@@ -45,13 +49,14 @@ public class WebsiteDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn=DriverManager.getConnection(connString,uName,pass);
-			String str="INSERT INTO website (developer_id,name,description,updated,visits) values(?,?,?,?,?) ";
+			String str="INSERT INTO website (developer_id,name,description,created,updated,visits) values(?,?,?,?,?,?) ";
 			pstmt=conn.prepareStatement(str,pstmt.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, developerId);
 			pstmt.setString(2, website.getName());	
-			pstmt.setString(3, website.getDescription());		
-			pstmt.setString(4, website.getUpdated());
-			pstmt.setInt(5, website.getVisits());
+			pstmt.setString(3, website.getDescription());
+			pstmt.setString(4, "2018-07-03");
+			pstmt.setString(5, "2018-07-03");
+			pstmt.setInt(6, website.getVisits());
 			
 			result=pstmt.executeUpdate();
 			results = pstmt.getGeneratedKeys();
@@ -67,7 +72,7 @@ public class WebsiteDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+		}  finally {
 			try {
 				conn.close();
 				pstmt.close();
@@ -204,7 +209,7 @@ public class WebsiteDao {
 			pstmt.setInt(5, website.getDeveloper().getId());
 			pstmt.setInt(6, websiteId);
 			result=pstmt.executeUpdate();
-			//System.out.println("updateWebsite() Website Status:"+result);
+			System.out.println("updateWebsite() Website Status:"+result);
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -235,6 +240,7 @@ public class WebsiteDao {
 			pstmt.setInt(1, websiteId);
 			
 			result= pstmt.executeUpdate();
+			System.out.println("deleteWebsite() Website Status:"+result);
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
